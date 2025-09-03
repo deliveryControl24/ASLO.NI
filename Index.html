@@ -1,0 +1,811 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASLO - Seguridad Industrial</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e74c3c;
+            --accent-color: #3498db;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --whatsapp-color: #25D366;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-img {
+            height: 60px;
+            margin-right: 1rem;
+            border-radius: 5px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        
+        nav ul li a i {
+            margin-right: 0.5rem;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 4rem 1rem;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+        }
+        
+        .btn i {
+            margin-right: 0.5rem;
+        }
+        
+        .btn-facebook {
+            background-color: #3b5998;
+        }
+        
+        .btn-facebook:hover {
+            background-color: #2d4373;
+        }
+        
+        .btn-email {
+            background-color: #3498db;
+        }
+        
+        .btn-email:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-whatsapp {
+            background-color: var(--whatsapp-color);
+        }
+        
+        .btn-whatsapp:hover {
+            background-color: #128C7E;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-img {
+            height: 200px;
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .feature-content {
+            padding: 1.5rem;
+        }
+        
+        .feature-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-content h3 i {
+            margin-right: 0.5rem;
+            color: var(--accent-color);
+        }
+        
+        .info-section {
+            background-color: var(--light-color);
+            padding: 3rem 1rem;
+        }
+        
+        .info-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .info-item {
+            background-color: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .info-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .gallery-item {
+            height: 200px;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+            filter: grayscale(30%);
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+        
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .process-step {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+        
+        .step-number {
+            background-color: var(--accent-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex-grow: 1;
+        }
+        
+        .emergency-section {
+            background-color: #e74c3c;
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+            text-align: center;
+        }
+        
+        .emergency-section h3 {
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-logo {
+            height: 70px;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+        }
+        
+        .footer-content p {
+            margin: 0.5rem 0;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .facebook-embed {
+            margin-top: 2rem;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+        
+        .email-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+        
+        .email-button:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+        }
+        
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--whatsapp-color);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            transition: all 0.3s;
+            animation: pulse 2s infinite;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+        
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-color);
+                padding: 1rem;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .process-step {
+                flex-direction: column;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Botón flotante de WhatsApp -->
+    <a href="https://wa.me/50586517062" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <header>
+        <div class="logo-container">
+            <img src="LOGO1.jpg" alt="ASLO Seguridad Industrial" class="logo-img">
+            <h1>ASLO</h1>
+        </div>
+        <button class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav>
+            <ul id="navMenu">
+                <li><a href="#inicio"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="#consejos"><i class="fas fa-lightbulb"></i> Consejos</a></li>
+                <li><a href="#normativas"><i class="fas fa-file-contract"></i> Normativas</a></li>
+                <li><a href="#equipos"><i class="fas fa-hard-hat"></i> Equipos</a></li>
+                <li><a href="#procedimientos"><i class="fas fa-clipboard-list"></i> Procedimientos</a></li>
+                <li><a href="#galeria"><i class="fas fa-images"></i> Galería</a></li>
+                <li><a href="#contacto"><i class="fas fa-envelope"></i> Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="inicio">
+        <h1>ASLO - Seguridad Industrial</h1>
+        <p>Expertos en soluciones integrales de seguridad industrial para proteger a su personal, instalaciones y operaciones.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="#contacto" class="btn"><i class="fas fa-phone-alt"></i> Contactar Ahora</a>
+            <a href="https://www.facebook.com/share/17Aw79PQfz/" target="_blank" class="btn btn-facebook"><i class="fab fa-facebook"></i> Síguenos en Facebook</a>
+        </div>
+    </section>
+
+    <section class="container" id="consejos">
+        <h2 class="section-title">Consejos de Seguridad Industrial</h2>
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-img" style="background-image: url('https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                <div class="feature-content">
+                    <h3><i class="fas fa-hard-hat"></i> Gestión de EPIs</h3>
+                    <p>Los Equipos de Protección Individual (EPIs) deben seleccionarse según el riesgo específico, mantenerse adecuadamente y reemplazarse periódicamente. Implemente un sistema de control que garantice su uso correcto en todas las áreas de riesgo.</p>
+                    <p>Realice evaluaciones periódicas de la efectividad de los EPIs y proporcione formación específica sobre su uso, limitaciones y mantenimiento.</p>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-img" style="background-image: url('https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                <div class="feature-content">
+                    <h3><i class="fas fa-cogs"></i> Protocolos de Maquinaria</h3>
+                    <p>Establezca procedimientos de bloqueo y etiquetado (LOTO) para el mantenimiento de equipos. Todos los operarios deben recibir formación específica sobre cada máquina que operen.</p>
+                    <p>Implemente inspecciones diarias previas al uso y mantenga registros detallados de mantenimiento preventivo y correctivo. Las protecciones de máquinas nunca deben ser removidas o anuladas.</p>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-img" style="background-image: url('https://images.unsplash.com/photo-1581092580565-14d7c1d806d6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                <div class="feature-content">
+                    <h3><i class="fas fa-fire-extinguisher"></i> Prevención de Incendios</h3>
+                    <p>Mantenga un programa de prevención de incendios que incluya identificación de combustibles, fuentes de ignición y controles de ingeniería. Realice simulacros trimestrales y capacite al personal en el uso of extintores.</p>
+                    <p>Establezca rutas de evacuación claramente señalizadas y puntos de reunión externos. Mantenga los equipos de combate de incendios inspeccionados y accesibles en todo momento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section" id="normativas">
+        <div class="container">
+            <h2 class="section-title">Normativas de Seguridad Industrial</h2>
+            <div class="info-container">
+                <p>El cumplimiento normativo es esencial para operaciones industriales seguras y legalmente conformes. Estas son algunas de las regulaciones más críticas:</p>
+                
+                <div class="info-grid">
+                    <div class="info-item">
+                        <h4>Ley 31/1995 de Prevención de Riesgos Laborales</h4>
+                        <p>Establece el marco jurídico básico para la protección de los trabajadores frente to los riesgos laborales, con especial atención a los sectores industriales de alto riesgo.</p>
+                    </div>
+                    
+                    <div class="info-item">
+                        <h4>Real Decreto 1215/1997 sobre Equipos de Trabajo</h4>
+                        <p>Disposiciones mínimas de seguridad y salud para la utilización de equipos de trabajo, con requisitos específicos para maquinaria industrial.</p>
+                    </div>
+                    
+                    <div class="info-item">
+                        <h4>Reglamento de Instalaciones de Protección contra Incendios</h4>
+                        <p>Establece los requisitos para diseño, instalación, mantenimiento e inspección de sistemas contra incendios en instalaciones industriales.</p>
+                    </div>
+                    
+                    <div class="info-item">
+                        <h4>Normativa ATEX para atmósferas explosivas</h4>
+                        <p>Directiva 2014/34/UE sobre equipos y sistemas de protección para uso en atmósferas potencialmente explosivas, aplicable en industrias químicas y petroquímicas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" id="equipos">
+        <h2 class="section-title">Equipos de Protección y Seguridad</h2>
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-img" style="background-image: url('https://images.unsplash.com/photo-1581092446325-49a3cf7c5cef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                <div class="feature-content">
+                    <h3><i class="fas fa-helmet-safety"></i> Protección de Cabeza y Auditiva</h3>
+                    <p>Los cascos de seguridad deben cumplir con la norma EN 397, proporcionando protección contra impactos y penetración. Para protección auditiva, los equipos deben seleccionarse según los niveles de ruido específicos de cada área.</p>
+                    <p>Implemente un programa de inspección regular y reemplazo de equipos dañados. La formación debe incluir instrucciones sobre ajuste correcto, limitaciones y mantenimiento.</p>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-img" style="background-image: url('https://images.unsplash.com/photo-1581092581326-44e342f2c0f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                <div class="feature-content">
+                    <h3><i class="fas fa-goggles"></i> Protección Respiratoria y Visual</h3>
+                    <p>Los equipos de protección respiratoria deben seleccionarse según el contaminante específico y su concentración, cumpliendo con la norma EN 149 para mascarillas filtrantes o EN 136 para máscaras completas.</p>
+                    <p>Para protección ocular, los equipos deben cumplir con EN 166, seleccionándose según el riesgo (impacto, salpicaduras químicas, radiación).</p>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-img" style="background-image: url('https://images.unsplash.com/photo-1581092921461-eab62e97c8d3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                <div class="feature-content">
+                    <h3><i class="fas fa-hands"></i> Protección de Extremidades y Corporal</h3>
+                    <p>Los guantes de protección deben seleccionarse según el riesgo específico (corte, abrasión, químicos, temperatura), cumpliendo con normativas específicas como EN 388 para riesgos mecánicos.</p>
+                    <p>El calzado de seguridad debe cumplir con EN ISO 20345, proporcionando protección contra impactos y compresión. La ropa de protección debe seleccionarse según los riesgos presentes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section" id="procedimientos">
+        <div class="container">
+            <h2 class="section-title">Procedimientos de Seguridad</h2>
+            <div class="info-container">
+                <p>La implementación de procedimientos estandarizados es fundamental para mantener entornos industriales seguros. Estos son los procesos críticos que toda instalación industrial debe establecer:</p>
+                
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Evaluación de Riesgos</h4>
+                            <p>Realice evaluaciones periódicas de todos los procesos, identificando peligros potenciales y estableciendo controles jerárquicos (eliminación, sustitución, controles de ingeniería, controles administrativos, EPIs).</p>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Procedimientos de Trabajo Seguro</h4>
+                            <p>Desarrolle instrucciones detalladas para todas las operaciones críticas, incluyendo permisos de trabajo para actividades de alto riesgo (espacios confinados, trabajos en altura, trabajos eléctricos).</p>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Formación y Capacitación</h4>
+                            <p>Implemente programas de formación inicial y continua, con evaluaciones periódicas de competencia. Incluya formación específica por puesto, simulacros de emergencia y actualizaciones normativas.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="emergency-section">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Protocolos de Emergencia</h3>
+                    <p>Establezca procedimientos claros para evacuación, primeros auxilios y comunicación en caso de emergencias. Realice simulacros regularmente y designe responsables para cada función de emergencia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section" id="galeria">
+        <div class="container">
+            <h2 class="section-title">Galería de Seguridad Industrial</h2>
+            <div class="info-container">
+                <p>Ejemplos visuales de implementaciones de seguridad, equipos de protección y entornos industriales seguros:</p>
+                
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Manejo seguro de maquinaria">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Equipos de protección">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1581092580565-14d7c1d806d6?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Prevención de incendios">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1581092446325-49a3cf7c5cef?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Señalización de seguridad">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" id="contacto">
+        <h2 class="section-title">Contacto</h2>
+        <div class="info-container">
+            <p>¿Necesita asesoramiento especializado en seguridad industrial? Nuestros expertos están disponibles para ayudarle:</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone fa-2x"></i>
+                    <div>
+                        <h4>Teléfono</h4>
+                        <p>8651 7062</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-envelope fa-2x"></i>
+                    <div>
+                        <h4>Email</h4>
+                        <p>asesoria.aslo@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-buttons">
+                <a href="https://wa.me/50586517062" target="_blank" class="btn btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+                </a>
+                <a href="mailto:asesoria.aslo@gmail.com" class="btn btn-email">
+                    <i class="fas fa-envelope"></i> Enviar correo
+                </a>
+                <a href="tel:+50586517062" class="btn">
+                    <i class="fas fa-phone"></i> Llamar ahora
+                </a>
+            </div>
+            
+            <div class="facebook-embed">
+                <h4>Síguenos en Facebook</h4>
+                <p>Mantente actualizado con nuestros consejos de seguridad, eventos y novedades del sector:</p>
+                <a href="https://www.facebook.com/share/17Aw79PQfz/" target="_blank" class="btn btn-facebook" style="margin-top: 1rem;">
+                    <i class="fab fa-facebook"></i> Visitar nuestra página de Facebook
+                </a>
+            </div>
+            
+            <div style="margin-top: 2rem; padding: 1.5rem; background-color: #f9f9f9; border-radius: 8px;">
+                <h4>Servicios de Asesoría Profesional</h4>
+                <p>Ofrecemos servicios especializados en:</p>
+                <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
+                    <li>Auditorías de seguridad industrial</li>
+                    <li>Elaboración de planes de prevención de riesgos laborales</li>
+                    <li>Capacitación especializada para trabajadores y supervisores</li>
+                    <li>Diseño e implementación de procedimientos de trabajo seguro</li>
+                    <li>Gestión de compliance normativo</li>
+                    <li>Investigación de incidentes y análisis de root cause</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <img src="LOGO1.jpg" alt="ASLO Seguridad Industrial" class="footer-logo">
+            <p>ASLO - Consultoría especializada en Seguridad Industrial</p>
+            <p>Protegiendo su negocio y su capital humano</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <p>8651 7062</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <p>asesoria.aslo@gmail.com</p>
+                </div>
+            </div>
+            
+            <div class="social-links">
+                <a href="https://www.facebook.com/share/17Aw79PQfz/" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://wa.me/50586517062" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            
+            <div class="contact-buttons">
+                <a href="https://wa.me/50586517062" target="_blank" class="btn btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="mailto:asesoria.aslo@gmail.com" class="email-button">
+                    <i class="fas fa-paper-plane"></i> Enviar mensaje
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Manejar el menú móvil
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('navMenu').classList.toggle('show');
+        });
+        
+        // Smooth scrolling para los enlaces de navegación
+        document.querySelectorAll('nav a, .btn[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                document.querySelector(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Cerrar menú móvil después de hacer clic
+                document.getElementById('navMenu').classList.remove('show');
+            });
+        });
+    </script>
+</body>
+</html>
